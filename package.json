@@ -1,0 +1,17 @@
+{
+  "name": "mock-auth",
+  "version": "0.0.1",
+  "author": "Manu Bravo",
+  "description": "Mock authentication API for testing",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "2.2.0",
+    "cookie-parser": "1.4.7",
+    "express": "5.1.0",
+    "uuid": "11.1.0"
+  }
+}

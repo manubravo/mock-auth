@@ -1,36 +1,36 @@
 # 🛡️ Mock Auth API
 
-API de autenticación **falsa** para entornos de desarrollo y pruebas. Ideal para integraciones rápidas con frontends o microservicios que requieran login/logout/verify sin necesidad de implementar un sistema real.
+**Fake authentication API** for development and testing environments. Ideal for quick integrations with frontends or microservices that require login/logout/verify without implementing a real authentication system.
 
-## 🚀 Características
+## 🚀 Features
 
-- **Login y Logout** con cookies o token Bearer.
-- **Verificación de sesión** (`/auth/verify`).
-- **Listado de usuarios** sin contraseñas.
-- **Logs de auditoría** por cada login/logout.
-- **Sesiones en memoria** (Map).
+- **Login and Logout** with cookies or Bearer token.
+- **Session verification** (`/auth/verify`).
+- **User listing** without passwords.
+- **Audit logs** for every login/logout.
+- **In-memory sessions** (Map).
 
-## 📦 Instalación
+## 📦 Installation
 
 ```bash
-git clone https://github.com/tu-usuario/mock-auth
+git clone https://github.com/manubravo/mock-auth
 cd mock-auth
 npm install
 ```
 
-## ▶️ Uso
+## ▶️ Usage
 
 ```bash
 npm start
 ```
 
-Por defecto escucha en `http://localhost:4000`.
+By default, it listens on `http://localhost:4000`.
 
-## 📚 Endpoints disponibles
+## 📚 Available Endpoints
 
 ### `GET /auth/users`
-Devuelve todos los usuarios disponibles **sin** contraseñas.  
-_💡 Útil para ver los usuarios disponibles para testear._
+Returns all available users **without** passwords.  
+_💡 Useful to see which users are available for testing._
 
 ---
 
@@ -44,7 +44,7 @@ _💡 Útil para ver los usuarios disponibles para testear._
 }
 ```
 
-**Respuesta:**
+**Response:**
 ```json
 {
   "token": "uuid-token",
@@ -56,15 +56,15 @@ _💡 Útil para ver los usuarios disponibles para testear._
 }
 ```
 
-> 📝 Establece también una cookie `sessionToken`.
+> 📝 Also sets a `sessionToken` cookie.
 
 ---
 
 ### `POST /auth/logout`
 
-Cierra la sesión actual y elimina el token.
+Closes the current session and deletes the token.
 
-- Soporta:
+- Supports:
   - Header: `Authorization: Bearer <token>`
   - Cookie: `sessionToken`
 
@@ -72,13 +72,13 @@ Cierra la sesión actual y elimina el token.
 
 ### `POST /auth/verify`
 
-Verifica si una sesión es válida.
+Checks if a session is valid.
 
-- Soporta:
+- Supports:
   - Header: `Authorization: Bearer <token>`
   - Cookie: `sessionToken`
 
-**Respuesta si es válida:**
+**Response if valid:**
 ```json
 {
   "valid": true,
@@ -94,39 +94,39 @@ Verifica si una sesión es válida.
 
 ### `GET /auth/logs`
 
-Devuelve todos los registros de login/logout.  
-⚠️ Solo para uso en desarrollo.
+Returns all login/logout audit logs.  
+⚠️ For development use only.
 
 ---
 
-## 👤 Usuarios por defecto
+## 👤 Default Users
 
-| ID | Email               | Contraseña | Rol         |
-|----|---------------------|------------|--------------|
-| 1  | superadmin@test.com | test       | superadmin   |
-| 2  | admin1@test.com     | test       | admin        |
-| 3  | admin2@test.com     | test       | admin        |
-| 4  | editor@test.com     | test       | editor       |
+| ID | Email               | Password | Role        |
+|----|---------------------|----------|-------------|
+| 1  | superadmin@test.com | test     | superadmin  |
+| 2  | admin1@test.com     | test     | admin       |
+| 3  | admin2@test.com     | test     | admin       |
+| 4  | editor@test.com     | test     | editor      |
 
 ---
 
-## 🔐 Detalles técnicos
+## 🔐 Technical Details
 
-- Sesiones gestionadas con `Map()` (sin persistencia).
-- Tokens UUID v4.
-- Cookies HTTP Only para mayor seguridad.
-- Middleware para parsear `body` y `cookies`.
+- Sessions managed with `Map()` (no persistence).
+- UUID v4 tokens.
+- HTTP Only cookies for better security.
+- Middleware for parsing `body` and `cookies`.
 
 ---
 
 ## 🛠️ Stack
 
 - Node.js + Express
-- UUID para tokens
-- `body-parser` y `cookie-parser`
+- UUID for tokens
+- `body-parser` and `cookie-parser`
 
 ---
 
-## ⚠️ Advertencia
+## ⚠️ Warning
 
-Esta API **no debe usarse en producción**. No cifra contraseñas ni implementa protección contra ataques comunes (CSRF, Brute Force, etc). Solo para propósitos de testing o integración rápida en proyectos locales o PoCs.
+This API **must not be used in production**. It does not hash passwords or implement protection against common attacks (CSRF, Brute Force, etc). For testing or quick integration in local projects

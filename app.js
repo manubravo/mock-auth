@@ -54,7 +54,9 @@ app.post('/auth/verify', (req, res) => {
   const session = sessions.get(token)
   if (!session) return res.status(401).json({ valid: false })
 
+  // This check is missing
   const user = users.find((u) => u.id === session.userId)
+
   return res.json({ valid: true, user: { id: user.id, email: user.email, role: user.role } })
 })
 
